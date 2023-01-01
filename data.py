@@ -8,11 +8,10 @@ parameters = {
 
 response = requests.get("https://opentdb.com/api.php", params=parameters)
 response.raise_for_status()
-data = response.json()["results"][0]["question"]
-data = html.unescape(data)
-print(data)
+question_data = response.json()["results"]
+data = html.unescape(question_data)
 
-question_data = []
+
 # question_data = [
 #     {
 #         "category": "Science: Computers",
