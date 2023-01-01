@@ -6,7 +6,9 @@ parameters = {
 }
 
 response = requests.get("https://opentdb.com/api.php", params=parameters)
-print(response.json()["results"][0]["question"])
+response.raise_for_status()
+data = response.json()["results"][0]["question"]
+print(data)
 
 question_data = []
 # question_data = [
