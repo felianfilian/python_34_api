@@ -1,7 +1,14 @@
 import requests
 
-response = requests.get("https://opentdb.com/api.php")
+parameters = {
+    "amount": 10,
+    "type": "boolean"
+}
 
+response = requests.get("https://opentdb.com/api.php", params=parameters)
+print(response.json()["results"][0]["question"])
+
+question_data = []
 # question_data = [
 #     {
 #         "category": "Science: Computers",
