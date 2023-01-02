@@ -9,8 +9,8 @@ class QuizInterface:
 
         self.window = Tk()
         self.window.title("Trivial Quiz")
-
         self.window.config(width=400, height=600, padx=20, pady=20, bg=THEME_COLOR)
+
         self.txt_score = Label(text="Score: 0", fg="white", font=("Arial", 18, "normal"), bg=THEME_COLOR, highlightthickness=0,  padx=20, pady=20)
         self.txt_score.grid(row=0, column=1)
 
@@ -31,6 +31,7 @@ class QuizInterface:
         self.window.mainloop()
 
     def get_next_question(self):
+        print("test")
         self.canvas.config(bg="white")
         self.txt_score.config(text=f"Score: {self.quiz.score} / {self.quiz.question_number}")
         q_text = self.quiz.next_question()
@@ -47,4 +48,4 @@ class QuizInterface:
             self.canvas.config(bg="green")
         else:
             self.canvas.config(bg="red")
-        self.window.after(1000, self.get_next_question())
+        self.window.after(1000, self.get_next_question)
