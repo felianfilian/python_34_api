@@ -31,6 +31,8 @@ class QuizInterface:
         self.window.mainloop()
 
     def get_next_question(self):
+        self.canvas.config(bg="white")
+        self.txt_score.config(text=f"Score: {self.quiz.score} / {self.quiz.question_number}")
         q_text = self.quiz.next_question()
         self.canvas.itemconfig(self.txt_question, text=q_text)
 
