@@ -23,21 +23,23 @@ class QuizInterface:
         self.btn_true.grid(row=2, column=0)
 
         btn_img_false = PhotoImage(file="images/false.png")
-        self.btn_true = Button(image=btn_img_false, highlightthickness=0, command=self.false_pressed)
-        self.btn_true.grid(row=2, column=1)
+        self.btn_false = Button(image=btn_img_false, highlightthickness=0, command=self.false_pressed)
+        self.btn_false.grid(row=2, column=1)
 
         self.get_next_question()
 
         self.window.mainloop()
 
     def get_next_question(self):
+        self.canvas.config(bg="white")
         if self.quiz.still_has_questions():
-            self.canvas.config(bg="white")
             self.txt_score.config(text=f"Score: {self.quiz.score} / {self.quiz.question_number}")
             q_text = self.quiz.next_question()
             self.canvas.itemconfig(self.txt_question, text=q_text)
         else:
             self.canvas.itemconfig(self.txt_question, text="GAME END")
+            self.btn_true.config(state="disabled")
+            self.btn_false.config(state="disabled")
 
     def true_pressed(self):
         self.give_feedback(self.quiz.check_answer("True"))
