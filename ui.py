@@ -37,7 +37,7 @@ class QuizInterface:
             q_text = self.quiz.next_question()
             self.canvas.itemconfig(self.txt_question, text=q_text)
         else:
-            print("game finished")
+            self.canvas.itemconfig(self.txt_question, text="GAME END")
 
     def true_pressed(self):
         self.give_feedback(self.quiz.check_answer("True"))
