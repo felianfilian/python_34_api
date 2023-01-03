@@ -31,11 +31,13 @@ class QuizInterface:
         self.window.mainloop()
 
     def get_next_question(self):
-        print("test")
-        self.canvas.config(bg="white")
-        self.txt_score.config(text=f"Score: {self.quiz.score} / {self.quiz.question_number}")
-        q_text = self.quiz.next_question()
-        self.canvas.itemconfig(self.txt_question, text=q_text)
+        if self.quiz.still_has_questions():
+            self.canvas.config(bg="white")
+            self.txt_score.config(text=f"Score: {self.quiz.score} / {self.quiz.question_number}")
+            q_text = self.quiz.next_question()
+            self.canvas.itemconfig(self.txt_question, text=q_text)
+        else:
+            print("game finished")
 
     def true_pressed(self):
         self.give_feedback(self.quiz.check_answer("True"))
